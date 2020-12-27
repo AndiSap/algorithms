@@ -1,0 +1,14 @@
+sorting/BubbleSort.java
+ sorting.BubbleSort
+sorting/HeapSort.java
+ sorting.HeapSort
+sorting/MergeSort.java
+ sorting.MergeSort
+sorting/QuickSort.java
+ sorting.QuickSort
+trees/MinHeap.java
+ trees.MinHeap
+sorting/InsertionSort.java
+ sorting.InsertionSort
+sorting/SelectionSort.java
+ sorting.SelectionSort

@@ -1,0 +1,14 @@
+sortingTest/SelectionSortTest.java
+ sortingTest.SelectionSortTest
+sortingTest/InsertionSortTest.java
+ sortingTest.InsertionSortTest
+sortingTest/MergeSortTest.java
+ sortingTest.MergeSortTest
+treesTest/MinHeapTest.java
+ sortingTest.MinHeapTest
+sortingTest/BubbleSortTest.java
+ sortingTest.BubbleSortTest
+sortingTest/HeapSortTest.java
+ sortingTest.HeapSortTest
+sortingTest/QuickSortTest.java
+ sortingTest.QuickSortTest

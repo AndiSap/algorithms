@@ -1,5 +1,15 @@
 apply plugin: 'java'
 
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile('junit:junit:4.12')
+}
+
+repositories {
+    mavenCentral()
+}
+
+
 sourceSets {
     main {
         java {
@@ -8,11 +18,7 @@ sourceSets {
     }
     test {
         java {
-            srcDirs = ["test"]  // Note @Peter's comment below
+            srcDirs = ["test"]
         }
     }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }

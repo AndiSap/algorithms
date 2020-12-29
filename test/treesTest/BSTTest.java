@@ -84,4 +84,36 @@ public class BSTTest {
         Assert.assertArrayEquals(expectedResult, instance.inorder());
         Assert.assertEquals(10, instance.root.key);
     }
+
+    @Test
+    public void testDepth() {
+        System.out.println("BST: Testing depth");
+        int expectedResult = 3;
+        instance.insert(8);
+        instance.insert(3);
+        instance.insert(1);
+        instance.insert(6);
+        instance.insert(5);
+        instance.insert(7);
+        instance.insert(10);
+        instance.insert(14);
+        instance.insert(12);
+        Assert.assertEquals(expectedResult, instance.depth());
+    }
+
+    @Test
+    public void testDiameter() {
+        System.out.println("BST: Testing diameter");
+        int expectedResult = 7;
+        instance.insert(8);
+        instance.insert(3);
+        instance.insert(1);
+        instance.insert(6);
+        instance.insert(5);
+        instance.insert(7);
+        instance.insert(10);
+        instance.insert(14);
+        instance.insert(12);
+        Assert.assertEquals(expectedResult, instance.diameter());
+    }
 }

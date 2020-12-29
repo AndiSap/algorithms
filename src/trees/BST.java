@@ -114,13 +114,55 @@ public class BST {
         return minVal;
     }
 
+    public int depth() {
+        return depthRecursive(root);
+    }
+
+    /**
+     * Performs depth calculation of BST recursively
+     */
+    private int depthRecursive(Node root) {
+        if(root == null)
+            return -1;
+
+        else {
+            int left = depthRecursive(root.left);
+            int right = depthRecursive(root.right);
+
+            if (left > right)
+                return left + 1;
+            else
+                return right + 1;
+        }
+    }
+
+    /**
+     * Finds max diameter of BST
+     */
+    public int diameter() {
+        return diameterRecursive(root);
+    }
+
+    public int diameterRecursive(Node root) {
+        if(root == null)
+            return 0;
+        int leftDepth = depthRecursive(root.left) + 1;
+        int rightDepth = depthRecursive(root.right) + 1;
+
+        int diamLeft = diameterRecursive(root.left);
+        int diamRight = diameterRecursive(root.right);
+        return Math.max(1 + leftDepth + rightDepth, Math.max(diamLeft, diamRight));
+    }
+
     static public class Node {
         public int key;
+        public boolean visited;
         public Node left;
         public Node right;
 
         public Node(int key) {
             this.key = key;
+            this.visited = false;
         }
     }
 }

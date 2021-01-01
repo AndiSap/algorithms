@@ -17,6 +17,28 @@ public class AdjacencyListTest {
             {1, 1, 0, 1, 0}
     };
 
+    int[][] dijkstraMatrix = new int[][]{
+            { 0, 1, 0, 0, 0, 0, 0, 1, 0 },
+            { 1, 0, 1, 0, 0, 0, 0, 1, 0 },
+            { 0, 1, 0, 1, 0, 1, 0, 0, 1 },
+            { 0, 0, 1, 0, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 0, 1, 0, 0, 0 },
+            { 0, 0, 1, 1, 1, 0, 1, 0, 0 },
+            { 0, 0, 0, 0, 0, 1, 0, 1, 1 },
+            { 1, 1, 0, 0, 0, 0, 1, 0, 1 },
+            { 0, 0, 1, 0, 0, 0, 1, 1, 0 } };
+
+    int[][] primMatrix = new int[][]{
+            { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+            { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+            { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+            { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+            { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+            { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
+            { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
+            { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+            { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
+
     public AdjacencyListTest() {
     }
 
@@ -61,5 +83,25 @@ public class AdjacencyListTest {
     public void testDfsMatrix() {
         System.out.println("AdjacencyList: Testing dfs matrix");
         instance.dfsMatrix(matrix, 2);
+    }
+
+    @Test
+    public void testDijkstra() {
+        System.out.println("AdjacencyList: Testing dijkstra");
+        instance = new AdjacencyList(dijkstraMatrix.length);
+        for(int row = 0; row < dijkstraMatrix.length; row++)
+            for(int column = 0; column < dijkstraMatrix[0].length; column++)
+                if(dijkstraMatrix[row][column] == 1)
+                    instance.addEdge(row, column);
+
+        instance.dijkstra(8);
+    }
+
+    @Test
+    public void testPrimMst() {
+        System.out.println("AdjacencyList: Testing primMst");
+        instance = new AdjacencyList(primMatrix.length);
+
+        instance.primMst(primMatrix, 0);
     }
 }

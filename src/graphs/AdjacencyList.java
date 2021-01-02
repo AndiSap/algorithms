@@ -181,33 +181,22 @@ public class AdjacencyList {
         int[] parent = new int[matrix.length];
         parent[0] = -1;
 
-//        PriorityQueue<Integer> queue = new PriorityQueue<Integer>((o1, o2) ->  {
-//            if(cost[o1] == cost[o2])
-//                return 0;
-//            else if(cost[o1] > cost[o2])
-//                return -1;
-//            else
-//                return 1;
-//        });
-
         cost[source] = 0;
-//        queue.add(source);
         inMst[source] = true;
 
-//        while(!queue.isEmpty()) {
         for(int i = 0; i < matrix.length; i++) {
             int current = i;
-            ArrayList<Integer> neighbors = getNeighbors(matrix, current);
-            neighbors.sort(new Comparator<Integer>() {
-                public int compare(Integer o1, Integer o2) {
-                    if(matrix[current][o1] == matrix[current][o2])
-                        return 0;
-                    else if (matrix[current][o1] < matrix[current][o2])
-                        return -1;
-                    else
-                        return 1;
-                }
-            });
+            PriorityQueue<Integer> neighbors = new PriorityQueue<>(getNeighbors(matrix, current));
+//            neighbors.sort(new Comparator<Integer>() {
+//                public int compare(Integer o1, Integer o2) {
+//                    if(matrix[current][o1] == matrix[current][o2])
+//                        return 0;
+//                    else if (matrix[current][o1] < matrix[current][o2])
+//                        return -1;
+//                    else
+//                        return 1;
+//                }
+//            });
 
             for(int neighbor : neighbors) {
                 if(!inMst[neighbor] && (cost[neighbor] > matrix[current][neighbor])) {

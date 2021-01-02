@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 public class SubsequenceTest {
     Subsequence instance;
 
@@ -42,5 +44,14 @@ public class SubsequenceTest {
         String string2 = "women";
         String expectedResult = "now";
         Assert.assertEquals(expectedResult, instance.longestCommonSubsequence(string1, string2));
+    }
+
+    @Test
+    public void testAnagram() {
+        System.out.println("Subsequence: Testing anagram");
+        String string1 = "BACDGABCDA";
+        String string2 = "ABCD";
+        Integer[] expectedResult = new Integer[]{0, 5, 6};
+        Assert.assertEquals(Arrays.toString(expectedResult), instance.searchAnagram(string1, string2));
     }
 }

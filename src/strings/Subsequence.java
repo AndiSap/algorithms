@@ -1,7 +1,6 @@
 package strings;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class Subsequence {
 
@@ -59,5 +58,94 @@ public class Subsequence {
         }
 
         return solution;
+    }
+
+    /**
+     * Anagram Substring Search (Or Search for all permutations)
+     */
+    public String anagram(String text, String pattern, int t, ArrayList<Integer> solution, HashMap<Character, Integer> pat) {
+        if(pat.size() == 0) {
+            solution.add(t);
+            pat = createHashMap(pattern);
+            if(t == 0)  {
+                Collections.sort(solution);
+                return solution.toString();
+            }
+            t += pat.size() - 1; // time complexity here O(pn) // look at O(n) solution
+        }
+
+        if(t == 0) return solution.toString();
+        if(pat.containsKey(text.charAt(t - 1))) {
+            if(pat.get(text.charAt(t - 1)) > 1) {
+                pat.put(text.charAt(t - 1), pat.get(text.charAt(t - 1)) - 1);
+            }
+            else
+                pat.remove(text.charAt(t - 1));
+            return anagram(text, pattern, t - 1, solution, pat);
+        }
+        else
+            return anagram(text, pattern, t - 1, solution, createHashMap(pattern));
+    }
+
+    public String anagram(String text, String pattern) {
+        ArrayList<Integer> solution = new ArrayList<>();
+        return anagram(text, pattern, text.length(), solution, createHashMap(pattern));
+    }
+
+    public HashMap<Character, Integer> createHashMap(String text) {
+        HashMap<Character, Integer> pat = new HashMap<>();
+        for(Character character : text.toCharArray()) {
+            if(pat.containsKey(character))
+                pat.put(character, pat.get(character) + 1);
+            else
+                pat.put(character, 1);
+        }
+        return  pat;
+    }
+
+    public boolean compare(char[] first, char[] second) {
+        for(int i = 0; i < 256; i++) {
+            if(first[i] != second[i])
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Searches for all permutations of pattern in text
+     */
+    public String searchAnagram(String text, String pattern) {
+        ArrayList<Integer> solution = new ArrayList<>();
+
+        char[] pat = new char[256];
+        char[] currentWindow = new char[256];
+
+        /**
+         * Initial characters
+         */
+        for(int i = 0; i < pattern.length(); i++) {
+            pat[pattern.charAt(i)]++;
+            currentWindow[text.charAt(i)]++;
+        }
+
+        /**
+         * remaining characters
+         */
+        for(int i = pattern.length(); i < text.length(); i++) {
+            if(compare(pat, currentWindow)) {
+                System.out.println("Found pattern at: " + (i - pattern.length()));
+                solution.add(i - pattern.length());
+            }
+
+            currentWindow[text.charAt(i)]++; // add current character to current window
+            currentWindow[text.charAt(i - pattern.length())]--; // remove first window character
+        }
+
+        if(compare(pat, currentWindow)) {
+            System.out.println("Found pattern at: " + (text.length() - pattern.length()));
+            solution.add(text.length() - pattern.length());
+        }
+
+        return solution.toString();
     }
 }

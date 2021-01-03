@@ -39,65 +39,73 @@ public class TaskScheduling {
         return solution;
     }
 
+    /**
+     * Task scheduling in O(nlogn)
+     */
     public int[] scheduleWithDeadlines(int[] deadline, int[] profit) {
-        PriorityQueue<Dtask> tasks = new PriorityQueue<Dtask>(new Comparator<Dtask>() {
-            @Override
-            public int compare(Dtask o1, Dtask o2) {
-                if(o1.deadline == o2.deadline) {
-                    if(o1.profit == o2.profit)
-                        return 0;
-                    else if(o1.profit < o2.profit)
-                        return 1;
-                    else return -1;
-                }
-                else if (o1.deadline > o2.deadline)
-                    return -1;
-                else
-                    return 1;
-            }
-        });
+        ArrayList<Dtask> tasks = new ArrayList<>();
         for(int i = 0; i < deadline.length; i++)
             tasks.add(new Dtask(i + 1, deadline[i], profit[i]));
 
-        int[] scheduled = new int[tasks.peek().deadline];
-        PriorityQueue<Dtask> notUsed = new PriorityQueue<>((o1, o2) -> {
-            if(o1.profit == o2.profit)
-                return 0;
-            if(o1.profit < o2.profit)
-                return -1;
-            else
-                return 1;
+        Collections.sort(tasks, new Comparator<Dtask>() {
+            @Override
+            public int compare(Dtask o1, Dtask o2) {
+                if(o1.profit == o2.profit) {
+                    return o2.deadline - o1.deadline;
+                }
+                else
+                    return o2.profit - o1.profit;
+            }
         });
+
+        int[] scheduled = new int[deadline.length];
+        TreeSet<Integer> slots = new TreeSet<>();
+        for(int i = 0; i < deadline.length; i++)
+            slots.add(i);
 
         int totalProfit = 0;
 
-        int deadLineCurrent = tasks.peek().deadline;
         for(int i = 0; i < deadline.length; i++) {
-            Dtask currentElement = tasks.peek();
-            Dtask maxProfit = notUsed.peek();
-            if(currentElement == null) continue;
+            Dtask currentElement = tasks.get(i);
+            Integer toBeInserted = slots.floor(currentElement.deadline - 1); // get slot less or equal to current deadline
 
-            if(maxProfit != null && maxProfit.deadline != currentElement.deadline) {
-                currentElement = notUsed.poll();
-            }
-
-            if(deadLineCurrent >= currentElement.deadline && deadLineCurrent > 0) {
-                tasks.poll();
-                scheduled[deadLineCurrent - 1] = currentElement.id;
+            if (toBeInserted != null) {
+                slots.remove(toBeInserted);
+                scheduled[toBeInserted] = currentElement.id;
                 totalProfit += currentElement.profit;
             }
-            else
-                notUsed.add(currentElement);
-
-            deadLineCurrent--;
         }
-
-//        int[] solution = new int[scheduled.size()];
-//        for(int i = 0; i < scheduled.size(); i++)
-//            solution[i] = scheduled.get(i).id;
 
         System.out.println("TaskScheduling: total profit of: " + totalProfit);
         return scheduled;
+    }
+
+    /**
+     * Task scheduling in O(n*n)
+     */
+    public int[] scheduleWithTime(int[] deadlines, int[] profit) {
+        ArrayList<Dtask> tasks = new ArrayList<>();
+        for(int i = 0; i < deadlines.length; i++)
+            tasks.add(new Dtask(i + 1, deadlines[i], profit[i]));
+
+        Collections.sort(tasks, (o1, o2) -> o2.profit - o1.profit);
+
+        int[] solution = new int[deadlines.length];
+        int totalProfit = 0;
+
+        for(int i = deadlines.length; i > 0; i--) {
+            for(int j = 0; j < tasks.size(); j++) {
+                if(tasks.get(j).deadline >= i) {
+                    solution[i - 1] = tasks.get(j).id;
+                    totalProfit += tasks.get(j).profit;
+                    tasks.remove(j);
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Task scheduling total Profit: " + totalProfit);
+        return solution;
     }
 
     public class Task {

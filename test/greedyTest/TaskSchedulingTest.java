@@ -33,8 +33,15 @@ public class TaskSchedulingTest {
 
     @Test
     public void testTaskSchedulingWithDeadlines() {
-        System.out.println("TaskScheduling: Testing schedule with deadlines");
-        int[] exptectedResult = {2, 4, 10};
+        System.out.println("TaskScheduling: Testing schedule with deadlines O(n*n)");
+        int[] exptectedResult = {7, 5, 2, 1, 0, 8, 11, 9, 0, 0, 0};
+        Assert.assertEquals(Arrays.toString(exptectedResult), Arrays.toString(instance.scheduleWithTime(deadlines, profits)));
+    }
+
+    @Test
+    public void testTaskSchedulingWithDeadlinesFast() {
+        System.out.println("TaskScheduling: Testing schedule with deadlines O(nlogn)");
+        int[] exptectedResult = {7, 5, 2, 1, 0, 8, 11, 9, 0, 0, 0};
         Assert.assertEquals(Arrays.toString(exptectedResult), Arrays.toString(instance.scheduleWithDeadlines(deadlines, profits)));
     }
 

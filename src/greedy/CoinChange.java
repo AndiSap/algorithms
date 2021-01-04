@@ -10,6 +10,9 @@ public class CoinChange {
         return solution;
     }
 
+    /**
+     * This will not work for all change sets -> see DP solution
+     */
     public void change(int[] change, int amount, int end, ArrayList<Integer> solution) {
         if(end == 0) {
             if(change[0] == amount)

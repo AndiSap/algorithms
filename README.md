@@ -48,6 +48,7 @@ Collection of common data structures and algorithms implemented in Java.
 - Minimum spanning tree
 - Task (Job) scheduling (with and without deadlines)
 - Vertex Cover
-- maximum sum subsequence
-- minimum positive sum subsequence
+- Maximum sum subsequence
+- Minimum positive sum subsequence
+- Partition equal subset sum and calculate set A and set B members
 

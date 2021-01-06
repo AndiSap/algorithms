@@ -2,6 +2,8 @@
 
 Collection of common data structures and algorithms implemented in Java.
 
+See <a href="src">source code</a>
+
 ### Search algorithms
 - Linear search
 - Binary search

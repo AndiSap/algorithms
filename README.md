@@ -54,3 +54,5 @@ See <a href="src">source code</a>
 - Minimum positive sum subsequence
 - Partition equal subset sum and calculate set A and set B members
 
+### Dynamic programming
+- Edit distance

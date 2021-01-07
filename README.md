@@ -57,3 +57,4 @@ See <a href="src">source code</a>
 ### Dynamic programming
 - Edit distance
 - 0-1 knapsack
+- Longest common subsequence

@@ -58,4 +58,5 @@ See <a href="src">source code</a>
 - Edit distance
 - 0-1 knapsack
 - Longest common subsequence
-- fuel reloading
+- Fuel reloading
+- Coin change

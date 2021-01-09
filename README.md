@@ -63,3 +63,4 @@ See <a href="src">source code</a>
 - Rod cutting
 - Max subset sum in array using O(n) time - Kadane's algorithm
 - Subset sum of k
+- Partition array into 2 sub-arrays of equal sum

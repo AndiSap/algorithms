@@ -1,5 +1,6 @@
 package dynamicProgramming;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PartitionArray {
@@ -74,4 +75,5 @@ public class PartitionArray {
 
         printElements(matrix, i - 1, j, array);
     }
+
 }

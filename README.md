@@ -61,3 +61,4 @@ See <a href="src">source code</a>
 - Fuel reloading
 - Coin change
 - Rod cutting
+- Max subset sum in array using O(n) time - Kadane's algorithm

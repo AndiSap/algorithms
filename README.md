@@ -65,3 +65,4 @@ See <a href="src">source code</a>
 - Subset sum of k
 - Partition array into 2 sub-arrays of equal sum
 - Task Scheduling with profits
+- Optimal BST

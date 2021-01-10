@@ -33,7 +33,8 @@ public class LongestCommonSubsequence {
             count = calculcateLCSCon(word1, word2, s1 - 1, s2 - 1, count + 1);
         else
             count = Math.max(count,
-                    Math.max(calculcateLCSCon(word1, word2, s1, s2 - 1, 0), calculcateLCSCon(word1, word2, s1 - 1, s2, 0)));
+                    Math.max(calculcateLCSCon(word1, word2, s1, s2 - 1, 0),
+                            calculcateLCSCon(word1, word2, s1 - 1, s2, 0)));
 
         return count;
     }

@@ -81,12 +81,15 @@ public class EditDistance {
                 return 1;
         }
         if(u == 0)
-            return editDistance(word1, word2, u, --v) + 1;
+            return v + 1; //editDistance(word1, word2, u, v - 1) + 1;
         if(v == 0)
-            return editDistance(word1, word2, --u, v) + 1;
-        if(word1.charAt(u) == word2.charAt(v))
-            return editDistance(word1, word2, --u, --v);
+            return u + 1; //editDistance(word1, word2, u - 1, v) + 1;
 
-        return editDistance(word1, word2, --u, --v) + 1;
+        int change = 1;
+        if(word1.charAt(u) == word2.charAt(v))
+            change = 0; //return editDistance(word1, word2, u - 1, v - 1);
+
+        return Math.min(Math.min(editDistance(word1, word2, u, v - 1) + 1, editDistance(word1, word2, u - 1, v) + 1),
+                editDistance(word1, word2, u - 1, v - 1) + change); //return editDistance(word1, word2, u - 1, v - 1) + 1;
     }
 }

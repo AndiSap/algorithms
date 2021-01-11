@@ -66,4 +66,30 @@ public class MatrixChainMul {
         printBrackets(parentMatrix, k + 1, end);
         System.out.print(")");
     }
+
+    /**
+     * Numbers of possible parenthesizations recursive
+     */
+    public int noOfPossibleParent(int elements) {
+        if(elements <= 1)
+            return 1;
+
+        int sum = 0;
+        for(int k = 1; k < elements; k++)
+            sum += noOfPossibleParent(k) * noOfPossibleParent(elements - k);
+        return sum;
+    }
+
+    /**
+     * Numbers of possible parenthesizations dynamic programming
+     */
+    public int noOfPossibleParentDp(int elements) {
+        int[] dp = new int[elements + 1];
+        dp[0] = dp[1] = 1;
+        for(int i = 2; i <= elements; i++)
+            for(int k = 1; k < i; k++)
+                dp[i] += dp[k] * dp[i - k];
+
+        return dp[elements];
+    }
 }

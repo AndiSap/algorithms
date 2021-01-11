@@ -29,4 +29,20 @@ public class MatrixChainMulTest {
         Assert.assertEquals(expectedResult, instance.matrixChainDp(dimensions));
         instance.matrixChainDp(dimensions2);
     }
+
+    @Test
+    public void testNumOfParam() {
+        System.out.println("MatrixChainMul: testing number of possible parameterizations recursive");
+        int expectedResult = 14;
+        Assert.assertEquals(expectedResult, instance.noOfPossibleParent(5));
+//        instance.matrixChainDp(dimensions2);
+    }
+
+    @Test
+    public void testNumOfParamDp() {
+        System.out.println("MatrixChainMul: testing number of possible parameterizations dynamic programming");
+        int expectedResult = 14;
+        Assert.assertEquals(expectedResult, instance.noOfPossibleParentDp(5));
+//        instance.matrixChainDp(dimensions2);
+    }
 }

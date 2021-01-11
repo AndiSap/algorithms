@@ -66,3 +66,4 @@ See <a href="src">source code</a>
 - Partition array into 2 sub-arrays of equal sum
 - Task Scheduling with profits
 - Optimal BST
+- Matrix Chain multiplication

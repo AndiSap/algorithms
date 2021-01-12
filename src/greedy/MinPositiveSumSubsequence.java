@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class MinPositiveSumSubsequence {
 
+    /**
+     * time: O(n (logn)^2 )
+     */
     public int findMinPosSumSub(int[] array, int left, int right) {
         if(left == right)
             return array[left];

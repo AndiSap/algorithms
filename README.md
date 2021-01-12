@@ -67,3 +67,5 @@ See <a href="src">source code</a>
 - Task Scheduling with profits
 - Optimal BST
 - Matrix Chain multiplication
+- Egg drop problem
+- Maximum sum rectangle

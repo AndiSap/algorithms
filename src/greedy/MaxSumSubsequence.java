@@ -2,6 +2,9 @@ package greedy;
 
 public class MaxSumSubsequence {
 
+    /**
+     * time: O(nlogn)
+     */
     public int findMaxSumSub(int[] array, int left, int right) {
         if (left == right)
             return array[left];
